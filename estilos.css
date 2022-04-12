@@ -1,5 +1,5 @@
 body {
-  background-color: red;
+  background-color: #F3F3F3
 }
 .topo {
   background-color: white;
@@ -17,4 +17,60 @@ body {
   height: 45px;
   margin-right: 15px;
   margin-top: 20px;
+}
+.mensagens {
+  margin-top: 20px;
+}
+.mensagem {
+  background-color: white;
+  border-radius: 2px;
+  height: 100%;
+  margin-top: 2px;
+  display: flex;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+.status {
+  background-color: #dcdcdc;
+}
+.reservadas {
+  background-color: #ffdede;
+}
+.horario {
+  padding: 5px;
+}
+.nome {
+  padding: 5px;
+  font-weight: bold;
+}
+.texto {
+  padding: 5px;
+}
+
+.finalDaPag {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  position: fixed;
+}
+.caixinha{
+    height: 100%;
+    padding: 20px;
+    width: 80%;
+    border: none;
+    outline:none;
+   
+
+}
+.iconeFinal{
+  align-self: center;
+  margin-right: 25px;
+  width: 30px;
+  height: 30px;
+  
 }
