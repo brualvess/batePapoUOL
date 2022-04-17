@@ -71,18 +71,18 @@ function keepAlive() {
   console.log("hello world");
 }
 function enviarMensagem() {
-  let mensagemDigitada = document.querySelector(".caixinha").value;
+  const mensagemDigitada = document.querySelector(".caixinha");
   let promise = axios.post(
     "https://mock-api.driven.com.br/api/v6/uol/messages",
     {
       from: nome,
       to: "Todos",
-      text: mensagemDigitada,
+      text: mensagemDigitada.value,
       type: "message",
     }
-  ); 
+  );
   promise.then(respostaMensagem);
-mensagemDigitada = ""
+  mensagemDigitada.value = "";
 }
 
 function respostaMensagem(promise) {
@@ -90,5 +90,16 @@ function respostaMensagem(promise) {
     buscarMensagens();
   } else {
     window.location.reload();
-  } 
+  }
 }
+function buttonEnter() {
+  console.log("brubru")
+  const inputEle = document.querySelector(".caixinha");
+  inputEle.addEventListener("keyup", function (e) {
+    var key = e.code;
+    console.log(key)
+    if (key == "Enter") {
+      enviarMensagem();
+    } 
+  }); 
+}buttonEnter()
