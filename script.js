@@ -12,8 +12,9 @@ entrarNaSala();
 function verificarNome(aResposta) {
   if (aResposta.status == 400) {
     entrarNaSala();
+  } else {
+    setInterval(keepAlive, 5000);
   }
-  console.log(aResposta);
 }
 
 function buscarMensagens() {
@@ -23,7 +24,6 @@ function buscarMensagens() {
   promessa.then(processarMensagens);
 }
 setInterval(buscarMensagens, 3000);
-
 
 function processarMensagens(mensagens) {
   const mensagensDoArray = mensagens.data;
@@ -41,6 +41,7 @@ function processarMensagens(mensagens) {
   <div class="texto">${mensagensDoArray[i].text}</div>
   </div>`;
         }
+
         break;
       case "status":
         msgs.innerHTML += `<div class="mensagem status">
@@ -61,4 +62,33 @@ function processarMensagens(mensagens) {
   let ultimaMensagem = document.querySelectorAll(".mensagem");
   ultimaMensagem = ultimaMensagem[ultimaMensagem.length - 1];
   ultimaMensagem.scrollIntoView();
+}
+function keepAlive() {
+  let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", {
+    name: nome,
+  });
+  promise.then();
+  console.log("hello world");
+}
+function enviarMensagem() {
+  let mensagemDigitada = document.querySelector(".caixinha").value;
+  let promise = axios.post(
+    "https://mock-api.driven.com.br/api/v6/uol/messages",
+    {
+      from: nome,
+      to: "Todos",
+      text: mensagemDigitada,
+      type: "message",
+    }
+  ); 
+  promise.then(respostaMensagem);
+mensagemDigitada = ""
+}
+
+function respostaMensagem(promise) {
+  if (promise.status === 200) {
+    buscarMensagens();
+  } else {
+    window.location.reload();
+  } 
 }
