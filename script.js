@@ -6,11 +6,12 @@ function entrarNaSala() {
     { name: nome }
   );
   promise.then(verificarNome);
+  promise.catch(verificarNome);
 }
 entrarNaSala();
 
 function verificarNome(aResposta) {
-  if (aResposta.status == 400) {
+  if (aResposta.response.status == 400) {
     entrarNaSala();
   } else {
     setInterval(keepAlive, 5000);
@@ -68,7 +69,6 @@ function keepAlive() {
     name: nome,
   });
   promise.then();
-  console.log("hello world");
 }
 function enviarMensagem() {
   const mensagemDigitada = document.querySelector(".caixinha");
@@ -82,6 +82,7 @@ function enviarMensagem() {
     }
   );
   promise.then(respostaMensagem);
+  promise.catch(respostaMensagem);
   mensagemDigitada.value = "";
 }
 
@@ -93,13 +94,12 @@ function respostaMensagem(promise) {
   }
 }
 function buttonEnter() {
-  console.log("brubru")
   const inputEle = document.querySelector(".caixinha");
   inputEle.addEventListener("keyup", function (e) {
     var key = e.code;
-    console.log(key)
     if (key == "Enter") {
       enviarMensagem();
-    } 
-  }); 
-}buttonEnter()
+    }
+  });
+}
+buttonEnter();
